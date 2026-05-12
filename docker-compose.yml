@@ -1,0 +1,51 @@
+services:
+  order-service:
+    build:
+      context: .
+      dockerfile: apps/order-service/Dockerfile
+    environment:
+      PORT: 3001
+      MONGO_URL: mongodb://order-mongo:27017/orders
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    depends_on:
+      - order-mongo
+      - rabbitmq
+    ports:
+      - "3001:3001"
+
+  notification-service:
+    build:
+      context: .
+      dockerfile: apps/notification-service/Dockerfile
+    environment:
+      PORT: 3002
+      MONGO_URL: mongodb://notification-mongo:27017/notifications
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    depends_on:
+      - notification-mongo
+      - rabbitmq
+    ports:
+      - "3002:3002"
+
+  order-mongo:
+    image: mongo:7
+    ports:
+      - "27018:27017"
+
+  notification-mongo:
+    image: mongo:7
+    ports:
+      - "27019:27017"
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5674:5672"
+      - "15674:15672"
+
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml

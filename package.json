@@ -1,0 +1,26 @@
+{
+  "name": "node-microservices-event-driven",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Event-driven NestJS microservices with RabbitMQ, MongoDB and Prometheus.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "eslint \"{apps,packages}/**/*.ts\"",
+    "typecheck": "tsc -b apps/order-service apps/notification-service packages/contracts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.47.0"
+  }
+}
