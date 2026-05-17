@@ -17,51 +17,20 @@ class NotificationController implements OnModuleInit, OnModuleDestroy {
   private channel?: Channel;
 
   async onModuleInit(): Promise<void> {
-    await this.connectWithRetryMongo();
-    await this.connectWithRetryRabbit();
+    this.mongo = new MongoClient(process.env.MONGO_URL ?? 'mongodb://localhost:27017/notifications');
+    await this.mongo.connect();
+    this.rabbit = await connect(process.env.RABBITMQ_URL ?? 'amqp://localhost:5672');
+    this.channel = await this.rabbit.createChannel();
+    await this.channel.assertExchange('orders', 'topic', { durable: true });
+    await this.channel.assertQueue('notifications.order-created', { durable: true });
+    await this.channel.bindQueue('notifications.order-created', 'orders', ORDER_CREATED_EVENT);
+    await this.channel.consume('notifications.order-created', (message) => void this.handle(message));
   }
 
   async onModuleDestroy(): Promise<void> {
-    try {
-      await this.channel?.close();
-      await this.rabbit?.close();
-      await this.mongo?.close();
-    } catch {
-      // Ignore close errors
-    }
-  }
-
-  private async connectWithRetryMongo(maxRetries = 5): Promise<void> {
-    const url = process.env.MONGO_URL ?? 'mongodb://localhost:27017/notifications';
-    for (let i = 0; i < maxRetries; i++) {
-      try {
-        this.mongo = new MongoClient(url);
-        await this.mongo.connect();
-        return;
-      } catch (err) {
-        if (i === maxRetries - 1) throw err;
-        await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
-      }
-    }
-  }
-
-  private async connectWithRetryRabbit(maxRetries = 5): Promise<void> {
-    const url = process.env.RABBITMQ_URL ?? 'amqp://localhost:5672';
-    for (let i = 0; i < maxRetries; i++) {
-      try {
-        this.rabbit = await connect(url);
-        this.channel = await this.rabbit.createChannel();
-        await this.channel.prefetch(1);
-        await this.channel.assertExchange('orders', 'topic', { durable: true });
-        const q = await this.channel.assertQueue('notifications', { durable: true });
-        await this.channel.bindQueue(q.queue, 'orders', ORDER_CREATED_EVENT);
-        await this.channel.consume(q.queue, (msg) => void this.handle(msg));
-        return;
-      } catch (err) {
-        if (i === maxRetries - 1) throw err;
-        await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
-      }
-    }
+    await this.channel?.close();
+    await this.rabbit?.close();
+    await this.mongo?.close();
   }
 
   @Get('/health')

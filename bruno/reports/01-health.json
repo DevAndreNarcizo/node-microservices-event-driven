@@ -1,0 +1,146 @@
+[
+  {
+    "iterationIndex": 0,
+    "results": [
+      {
+        "test": {
+          "filename": "health/Health.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3001/health",
+          "headers": {
+            "Accept": "application/json",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "x-powered-by": "Express",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "15",
+            "etag": "W/\"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg\"",
+            "date": "Sat, 16 May 2026 14:41:45 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "ok"
+          },
+          "url": "http://localhost/health",
+          "responseTime": 10,
+          "duration": 10,
+          "size": 15
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [
+          {
+            "uid": "h_gHGn-dJ1kZFjUrPghMa",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          },
+          {
+            "uid": "YcirtCgNWTLizKvE6uEzO",
+            "lhsExpr": "res.body.status",
+            "rhsExpr": "eq \"ok\"",
+            "rhsOperand": "\"ok\"",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.062706152,
+        "name": "Health",
+        "path": "health/Health",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "health/Metrics.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3001/metrics",
+          "headers": {
+            "Accept": "text/plain",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "x-powered-by": "Express",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "9413",
+            "etag": "W/\"24c5-Fd7SBZ7RGmfigdYzXttP0HCUAtY\"",
+            "date": "Sat, 16 May 2026 14:41:45 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": "# HELP process_cpu_user_seconds_total Total user CPU time spent in seconds.\n# TYPE process_cpu_user_seconds_total counter\nprocess_cpu_user_seconds_total 0.9613059999999999\n\n# HELP process_cpu_system_seconds_total Total system CPU time spent in seconds.\n# TYPE process_cpu_system_seconds_total counter\nprocess_cpu_system_seconds_total 0.34980599999999995\n\n# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.\n# TYPE process_cpu_seconds_total counter\nprocess_cpu_seconds_total 1.311112\n\n# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.\n# TYPE process_start_time_seconds gauge\nprocess_start_time_seconds 1778942396\n\n# HELP process_resident_memory_bytes Resident memory size in bytes.\n# TYPE process_resident_memory_bytes gauge\nprocess_resident_memory_bytes 124923904\n\n# HELP process_virtual_memory_bytes Virtual memory size in bytes.\n# TYPE process_virtual_memory_bytes gauge\nprocess_virtual_memory_bytes 1224753152\n\n# HELP process_heap_bytes Process heap size in bytes.\n# TYPE process_heap_bytes gauge\nprocess_heap_bytes 707383296\n\n# HELP process_open_fds Number of open file descriptors.\n# TYPE process_open_fds gauge\nprocess_open_fds 25\n\n# HELP process_max_fds Maximum number of open file descriptors.\n# TYPE process_max_fds gauge\nprocess_max_fds 524288\n\n# HELP nodejs_eventloop_lag_seconds Lag of event loop in seconds.\n# TYPE nodejs_eventloop_lag_seconds gauge\nnodejs_eventloop_lag_seconds 0.00114748\n\n# HELP nodejs_eventloop_lag_min_seconds The minimum recorded event loop delay.\n# TYPE nodejs_eventloop_lag_min_seconds gauge\nnodejs_eventloop_lag_min_seconds 0.009084928\n\n# HELP nodejs_eventloop_lag_max_seconds The maximum recorded event loop delay.\n# TYPE nodejs_eventloop_lag_max_seconds gauge\nnodejs_eventloop_lag_max_seconds 0.011165695\n\n# HELP nodejs_eventloop_lag_mean_seconds The mean of the recorded event loop delays.\n# TYPE nodejs_eventloop_lag_mean_seconds gauge\nnodejs_eventloop_lag_mean_seconds 0.010163601796086509\n\n# HELP nodejs_eventloop_lag_stddev_seconds The standard deviation of the recorded event loop delays.\n# TYPE nodejs_eventloop_lag_stddev_seconds gauge\nnodejs_eventloop_lag_stddev_seconds 0.00014981984442401987\n\n# HELP nodejs_eventloop_lag_p50_seconds The 50th percentile of the recorded event loop delays.\n# TYPE nodejs_eventloop_lag_p50_seconds gauge\nnodejs_eventloop_lag_p50_seconds 0.010174463\n\n# HELP nodejs_eventloop_lag_p90_seconds The 90th percentile of the recorded event loop delays.\n# TYPE nodejs_eventloop_lag_p90_seconds gauge\nnodejs_eventloop_lag_p90_seconds 0.010297343\n\n# HELP nodejs_eventloop_lag_p99_seconds The 99th percentile of the recorded event loop delays.\n# TYPE nodejs_eventloop_lag_p99_seconds gauge\nnodejs_eventloop_lag_p99_seconds 0.010452991\n\n# HELP nodejs_active_resources Number of active resources that are currently keeping the event loop alive, grouped by async resource type.\n# TYPE nodejs_active_resources gauge\nnodejs_active_resources{type=\"PipeWrap\"} 2\nnodejs_active_resources{type=\"TCPSocketWrap\"} 6\nnodejs_active_resources{type=\"TCPServerWrap\"} 1\nnodejs_active_resources{type=\"Timeout\"} 4\nnodejs_active_resources{type=\"Immediate\"} 1\n\n# HELP nodejs_active_resources_total Total number of active resources.\n# TYPE nodejs_active_resources_total gauge\nnodejs_active_resources_total 14\n\n# HELP nodejs_active_handles Number of active libuv handles grouped by handle type. Every handle type is C++ class name.\n# TYPE nodejs_active_handles gauge\nnodejs_active_handles{type=\"Socket\"} 8\nnodejs_active_handles{type=\"Server\"} 1\n\n# HELP nodejs_active_handles_total Total number of active handles.\n# TYPE nodejs_active_handles_total gauge\nnodejs_active_handles_total 9\n\n# HELP nodejs_active_requests Number of active libuv requests grouped by request type. Every request type is C++ class name.\n# TYPE nodejs_active_requests gauge\n\n# HELP nodejs_active_requests_total Total number of active requests.\n# TYPE nodejs_active_requests_total gauge\nnodejs_active_requests_total 0\n\n# HELP nodejs_heap_size_total_bytes Process heap size from Node.js in bytes.\n# TYPE nodejs_heap_size_total_bytes gauge\nnodejs_heap_size_total_bytes 48160768\n\n# HELP nodejs_heap_size_used_bytes Process heap size used from Node.js in bytes.\n# TYPE nodejs_heap_size_used_bytes gauge\nnodejs_heap_size_used_bytes 30556032\n\n# HELP nodejs_external_memory_bytes Node.js external memory size in bytes.\n# TYPE nodejs_external_memory_bytes gauge\nnodejs_external_memory_bytes 21035349\n\n# HELP nodejs_heap_space_size_total_bytes Process heap space size total from Node.js in bytes.\n# TYPE nodejs_heap_space_size_total_bytes gauge\nnodejs_heap_space_size_total_bytes{space=\"read_only\"} 0\nnodejs_heap_space_size_total_bytes{space=\"new\"} 17825792\nnodejs_heap_space_size_total_bytes{space=\"old\"} 22130688\nnodejs_heap_space_size_total_bytes{space=\"code\"} 1835008\nnodejs_heap_space_size_total_bytes{space=\"shared\"} 0\nnodejs_heap_space_size_total_bytes{space=\"trusted\"} 4018176\nnodejs_heap_space_size_total_bytes{space=\"shared_trusted\"} 0\nnodejs_heap_space_size_total_bytes{space=\"new_large_object\"} 0\nnodejs_heap_space_size_total_bytes{space=\"large_object\"} 2187264\nnodejs_heap_space_size_total_bytes{space=\"code_large_object\"} 163840\nnodejs_heap_space_size_total_bytes{space=\"shared_large_object\"} 0\nnodejs_heap_space_size_total_bytes{space=\"shared_trusted_large_object\"} 0\nnodejs_heap_space_size_total_bytes{space=\"trusted_large_object\"} 0\n\n# HELP nodejs_heap_space_size_used_bytes Process heap space size used from Node.js in bytes.\n# TYPE nodejs_heap_space_size_used_bytes gauge\nnodejs_heap_space_size_used_bytes{space=\"read_only\"} 0\nnodejs_heap_space_size_used_bytes{space=\"new\"} 2959904\nnodejs_heap_space_size_used_bytes{space=\"old\"} 20191920\nnodejs_heap_space_size_used_bytes{space=\"code\"} 1598528\nnodejs_heap_space_size_used_bytes{space=\"shared\"} 0\nnodejs_heap_space_size_used_bytes{space=\"trusted\"} 3492848\nnodejs_heap_space_size_used_bytes{space=\"shared_trusted\"} 0\nnodejs_heap_space_size_used_bytes{space=\"new_large_object\"} 0\nnodejs_heap_space_size_used_bytes{space=\"large_object\"} 2153152\nnodejs_heap_space_size_used_bytes{space=\"code_large_object\"} 163584\nnodejs_heap_space_size_used_bytes{space=\"shared_large_object\"} 0\nnodejs_heap_space_size_used_bytes{space=\"shared_trusted_large_object\"} 0\nnodejs_heap_space_size_used_bytes{space=\"trusted_large_object\"} 0\n\n# HELP nodejs_heap_space_size_available_bytes Process heap space size available from Node.js in bytes.\n# TYPE nodejs_heap_space_size_available_bytes gauge\nnodejs_heap_space_size_available_bytes{space=\"read_only\"} 0\nnodejs_heap_space_size_available_bytes{space=\"new\"} 5952448\nnodejs_heap_space_size_available_bytes{space=\"old\"} 301744\nnodejs_heap_space_size_available_bytes{space=\"code\"} 236256\nnodejs_heap_space_size_available_bytes{space=\"shared\"} 0\nnodejs_heap_space_size_available_bytes{space=\"trusted\"} 524648\nnodejs_heap_space_size_available_bytes{space=\"shared_trusted\"} 0\nnodejs_heap_space_size_available_bytes{space=\"new_large_object\"} 8912896\nnodejs_heap_space_size_available_bytes{space=\"large_object\"} 0\nnodejs_heap_space_size_available_bytes{space=\"code_large_object\"} 0\nnodejs_heap_space_size_available_bytes{space=\"shared_large_object\"} 0\nnodejs_heap_space_size_available_bytes{space=\"shared_trusted_large_object\"} 0\nnodejs_heap_space_size_available_bytes{space=\"trusted_large_object\"} 0\n\n# HELP nodejs_version_info Node.js version info.\n# TYPE nodejs_version_info gauge\nnodejs_version_info{version=\"v24.15.0\",major=\"24\",minor=\"15\",patch=\"0\"} 1\n\n# HELP nodejs_gc_duration_seconds Garbage collection duration by kind, one of major, minor, incremental or weakcb.\n# TYPE nodejs_gc_duration_seconds histogram\nnodejs_gc_duration_seconds_bucket{le=\"0.001\",kind=\"minor\"} 0\nnodejs_gc_duration_seconds_bucket{le=\"0.01\",kind=\"minor\"} 2\nnodejs_gc_duration_seconds_bucket{le=\"0.1\",kind=\"minor\"} 2\nnodejs_gc_duration_seconds_bucket{le=\"1\",kind=\"minor\"} 2\nnodejs_gc_duration_seconds_bucket{le=\"2\",kind=\"minor\"} 2\nnodejs_gc_duration_seconds_bucket{le=\"5\",kind=\"minor\"} 2\nnodejs_gc_duration_seconds_bucket{le=\"+Inf\",kind=\"minor\"} 2\nnodejs_gc_duration_seconds_sum{kind=\"minor\"} 0.004917088985443115\nnodejs_gc_duration_seconds_count{kind=\"minor\"} 2\nnodejs_gc_duration_seconds_bucket{le=\"0.001\",kind=\"incremental\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"0.01\",kind=\"incremental\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"0.1\",kind=\"incremental\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"1\",kind=\"incremental\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"2\",kind=\"incremental\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"5\",kind=\"incremental\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"+Inf\",kind=\"incremental\"} 1\nnodejs_gc_duration_seconds_sum{kind=\"incremental\"} 0.0003243660032749176\nnodejs_gc_duration_seconds_count{kind=\"incremental\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"0.001\",kind=\"major\"} 0\nnodejs_gc_duration_seconds_bucket{le=\"0.01\",kind=\"major\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"0.1\",kind=\"major\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"1\",kind=\"major\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"2\",kind=\"major\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"5\",kind=\"major\"} 1\nnodejs_gc_duration_seconds_bucket{le=\"+Inf\",kind=\"major\"} 1\nnodejs_gc_duration_seconds_sum{kind=\"major\"} 0.002200871020555496\nnodejs_gc_duration_seconds_count{kind=\"major\"} 1\n\n# HELP orders_created_total Created orders\n# TYPE orders_created_total counter\norders_created_total 6\n",
+          "url": "http://localhost/metrics",
+          "responseTime": 4,
+          "duration": 4,
+          "size": 9413
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [
+          {
+            "uid": "i1Da5e3WjkGXvoHzXwRQ2",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          },
+          {
+            "uid": "l0XO3xFcs9kkwH-WaC2kq",
+            "lhsExpr": "res.body",
+            "rhsExpr": "isDefined",
+            "rhsOperand": "",
+            "operator": "isDefined",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.010092679,
+        "name": "Metrics",
+        "path": "health/Metrics",
+        "iterationIndex": 0
+      }
+    ],
+    "summary": {
+      "totalRequests": 2,
+      "passedRequests": 2,
+      "failedRequests": 0,
+      "errorRequests": 0,
+      "skippedRequests": 0,
+      "totalAssertions": 4,
+      "passedAssertions": 4,
+      "failedAssertions": 0,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "totalPreRequestTests": 0,
+      "passedPreRequestTests": 0,
+      "failedPreRequestTests": 0,
+      "totalPostResponseTests": 0,
+      "passedPostResponseTests": 0,
+      "failedPostResponseTests": 0
+    }
+  }
+]

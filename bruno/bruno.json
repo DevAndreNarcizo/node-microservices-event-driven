@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "name": "Microsserviço Node.js - Order Service",
+  "description": "Coleção Bruno para testar o Order Service da arquitetura event-driven",
+  "collections": [
+    {
+      "name": "health",
+      "path": "health"
+    },
+    {
+      "name": "orders",
+      "path": "orders"
+    }
+  ]
+}

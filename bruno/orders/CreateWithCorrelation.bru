@@ -1,0 +1,29 @@
+meta {
+  name: Create with Correlation ID
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/orders
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+  x-correlation-id: {{correlation_id}}
+}
+
+body:json {
+  {
+    "customerEmail": "outro@teste.com",
+    "totalCents": 10000
+  }
+}
+
+assert {
+  res.status: eq 201
+  res.body.id: isDefined
+  res.body.correlationId: eq "{{correlation_id}}"
+}
